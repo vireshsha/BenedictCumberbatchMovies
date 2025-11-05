@@ -16,18 +16,18 @@ This project demonstrates modern app structure, clean navigation management, and
 2. **Open** the project in **Xcode 15 or later**(✅ Project tested and verified on Xcode 26.1)
    File: `BenedictCumberbatchMovies.xcodeproj`
 
-4. **Configure the TMDB API Key**  
+5. **Configure the TMDB API Key**  
    Create a `Secrets.xcconfig` file (or set an environment variable):
    ```
    TMDB_API_KEY = your_api_key_here
    ```
    Get your API key from [The Movie Database (TMDB)](https://developers.themoviedb.org/3/getting-started/introduction).
 
-5. **Run the app**
+6. **Run the app**
    - Select a simulator (e.g., iPhone 15 Pro)
    - Press **⌘R** to build and run
 
-6. **Run unit tests**
+7. **Run unit tests**
    ```
    ⌘U
    ```
