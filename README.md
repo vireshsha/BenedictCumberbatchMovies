@@ -13,8 +13,7 @@ This project demonstrates modern app structure, clean navigation management, and
    cd BenedictCumberbatchMovies
    ```
 
-2. **Open** the project in **Xcode 15 or later**
-   (✅ Project tested and verified on Xcode 26.1)
+2. **Open** the project in **Xcode 15 or later**(✅ Project tested and verified on Xcode 26.1)
    File: `BenedictCumberbatchMovies.xcodeproj`
 
 4. **Configure the TMDB API Key**  
