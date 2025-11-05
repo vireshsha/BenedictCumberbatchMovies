@@ -1,7 +1,7 @@
 # 🎬 Benedict Cumberbatch Movies
 
 An iOS app showcasing a list of **Benedict Cumberbatch** movies using a hybrid **UIKit + SwiftUI + Coordinator** architecture.  
-This project demonstrates modern app structure, clean navigation management, and testable MVVM logic using native Apple frameworks.
+This project demonstrates modern app structure, clean navigation management, testable MVVM logic, and thread-safe async image loading using native Apple frameworks.
 
 ---
 

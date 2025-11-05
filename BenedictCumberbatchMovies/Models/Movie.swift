@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieResponse: Decodable {
+struct MovieResponse {
     let page: Int
     let results: [Movie]
     let totalPages: Int
@@ -21,7 +21,7 @@ struct MovieResponse: Decodable {
     }
 }
 
-struct Movie: Decodable, Identifiable, Equatable {
+struct Movie: Identifiable, Equatable {
     let id: Int
     let title: String
     let overview: String
@@ -41,3 +41,7 @@ struct Movie: Decodable, Identifiable, Equatable {
         return URL(string: Constants.imageBaseURL + path)
     }
 }
+
+// Make Decodable conformances explicitly nonisolated so they can be used from any actor.
+nonisolated extension MovieResponse: Decodable {}
+nonisolated extension Movie: Decodable {}

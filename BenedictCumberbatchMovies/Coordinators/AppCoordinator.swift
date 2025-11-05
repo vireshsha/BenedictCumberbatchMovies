@@ -31,7 +31,7 @@ final class AppCoordinator: Coordinator {
 
     func showDetail(movie: Movie) {
         let detailVM = MovieDetailViewModel(movie: movie)
-        let hosting = MovieDetailHostingController(viewModel: detailVM)
+        let hosting = MovieDetailHostingController(viewModel: detailVM, coordinator: self)
         navigationController.pushViewController(hosting, animated: true)
     }
 }

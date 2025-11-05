@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A5685272EBC143A0026118B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4A9D8F212EBADD8F00C30155 /* BenedictCumberbatchMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenedictCumberbatchMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9D8F2E2EBADD9200C30155 /* BenedictCumberbatchMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenedictCumberbatchMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9D8F382EBADD9300C30155 /* BenedictCumberbatchMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenedictCumberbatchMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +76,7 @@
 		4A9D8F182EBADD8F00C30155 = {
 			isa = PBXGroup;
 			children = (
+				4A5685272EBC143A0026118B /* README.md */,
 				4A9D8F592EBADFF400C30155 /* BenedictCumberbatchMovies */,
 				4A9D8F312EBADD9200C30155 /* BenedictCumberbatchMoviesTests */,
 				4A9D8F3B2EBADD9300C30155 /* BenedictCumberbatchMoviesUITests */,
