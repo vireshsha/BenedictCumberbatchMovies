@@ -13,7 +13,12 @@ final class MovieDetailSimilarTests: XCTestCase {
     actor MockSimilarService: SimilarServiceProtocol {
         var result: Result<[Movie], Error> = .success([])
 
-        func fetchSimilarMovies(for movieID: Int) async throws -> [Movie] {
+        func fetchSimilarMovies(
+            for movieID: Int,
+            language: String,
+            page: Int,
+            region: String?
+        ) async throws -> [Movie] {
             switch result {
             case .success(let movies): return movies
             case .failure(let error): throw error

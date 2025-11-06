@@ -1,5 +1,5 @@
 //
-//  APIClient.swift
+//  HomeMoviesService.swift
 //  BenedictCumberbatchMovies
 //
 //  Created by VIRESH KUMAR SHARMA on 2025-11-04.
@@ -27,7 +27,6 @@ enum APIError: Error, LocalizedError {
 
 protocol APIClientProtocol {
     func fetchMoviesForPerson(personId: Int) async -> Result<[Movie], APIError>
-    func fetchSimilarMovies(movieId: Int) async -> Result<[Movie], APIError>
 }
 
 final class APIClient: APIClientProtocol {
@@ -45,33 +44,6 @@ final class APIClient: APIClientProtocol {
             URLQueryItem(name: "api_key", value: Constants.tmdbAPIKey),
             URLQueryItem(name: "with_people", value: "\(personId)"),
             URLQueryItem(name: "sort_by", value: "release_date.desc")
-        ]
-        guard let url = components.url else { return .failure(.invalidURL) }
-
-        let request = URLRequest(url: url)
-
-        do {
-            let (data, response) = try await session.data(for: request)
-            if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
-                return .failure(.serverError(status: http.statusCode))
-            }
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let resp = try decoder.decode(MovieResponse.self, from: data)
-            return .success(resp.results)
-        } catch let decoding as DecodingError {
-            return .failure(.decodingError(decoding))
-        } catch {
-            return .failure(.networkError(error))
-        }
-    }
-
-    func fetchSimilarMovies(movieId: Int) async -> Result<[Movie], APIError> {
-        guard var components = URLComponents(string: "\(Constants.baseURL)/movie/\(movieId)/similar") else {
-            return .failure(.invalidURL)
-        }
-        components.queryItems = [
-            URLQueryItem(name: "api_key", value: Constants.tmdbAPIKey)
         ]
         guard let url = components.url else { return .failure(.invalidURL) }
 

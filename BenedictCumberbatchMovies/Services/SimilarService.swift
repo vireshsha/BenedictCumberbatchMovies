@@ -17,11 +17,6 @@ actor SimilarService: SimilarServiceProtocol {
         self.session = session
     }
 
-    // Protocol requirement: default behavior with language/page/region defaults.
-    func fetchSimilarMovies(for movieID: Int) async throws -> [Movie] {
-        try await fetchSimilarMovies(for: movieID, language: "en-US", page: 1, region: nil)
-    }
-
     /// Fetch similar movies for a given TMDB movie id.
     /// - Parameters:
     ///   - movieID: The TMDB movie id.

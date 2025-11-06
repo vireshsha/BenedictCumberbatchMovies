@@ -34,7 +34,12 @@ final class MovieDetailViewModel: ObservableObject {
             guard let self else { return }
             self.isLoadingSimilar = true
             do {
-                let results = try await similarService.fetchSimilarMovies(for: self.movie.id)
+                let results = try await similarService.fetchSimilarMovies(
+                    for: self.movie.id,
+                    language: "en-US",
+                    page: 1,
+                    region: nil
+                )
                 // filter out same movie if present
                 self.similarMovies = results.filter { $0.id != self.movie.id }
             } catch {
