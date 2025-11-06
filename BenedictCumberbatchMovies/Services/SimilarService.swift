@@ -7,6 +7,16 @@
 
 import Foundation
 
+protocol SimilarServiceProtocol: AnyObject {
+    /// Fetch similar movies for a given TMDB movie id.
+    func fetchSimilarMovies(
+        for movieID: Int,
+        language: String,
+        page: Int,
+        region: String?
+    ) async throws -> [Movie]
+}
+
 actor SimilarService: SimilarServiceProtocol {
     static let shared = SimilarService()
 
