@@ -40,7 +40,6 @@ final class MovieDetailViewModel: ObservableObject {
             } catch {
                 // handle gracefully - set to empty
                 self.similarMovies = []
-                print("Failed to load similar movies:", error)
             }
             self.isLoadingSimilar = false
         }
