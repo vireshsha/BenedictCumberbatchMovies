@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 title: "Mock Movie",
                 overview: "A mock overview for UI testing.",
                 posterPath: nil,
+                backdropPath: nil,
                 releaseDate: "2025-01-01"
             )
             let detailVM = MovieDetailViewModel(movie: mock)

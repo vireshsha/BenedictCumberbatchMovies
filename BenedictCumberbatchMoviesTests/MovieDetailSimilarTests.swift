@@ -30,11 +30,11 @@ final class MovieDetailSimilarTests: XCTestCase {
     func testLoadsSimilarMoviesAndFiltersSelf() async {
         // Arrange
         let mockService = MockSimilarService()
-        let base = Movie(id: 1, title: "Base", overview: "O", posterPath: nil, releaseDate: nil)
+        let base = Movie(id: 1, title: "Base", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil)
         let similar = [
             base, // should be filtered out
-            Movie(id: 2, title: "S1", overview: "O", posterPath: nil, releaseDate: nil),
-            Movie(id: 3, title: "S2", overview: "O", posterPath: nil, releaseDate: nil)
+            Movie(id: 2, title: "S1", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil),
+            Movie(id: 3, title: "S2", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil)
         ]
         await mockService.setResult(.success(similar))
 
@@ -58,7 +58,7 @@ final class MovieDetailSimilarTests: XCTestCase {
         await mockService.setResult(.failure(DummyError()))
 
         let vm = MovieDetailViewModel(
-            movie: Movie(id: 10, title: "A", overview: "O", posterPath: nil, releaseDate: nil),
+            movie: Movie(id: 10, title: "A", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil),
             similarService: mockService
         )
 
@@ -72,3 +72,4 @@ final class MovieDetailSimilarTests: XCTestCase {
         XCTAssertTrue(vm.similarMovies.isEmpty)
     }
 }
+

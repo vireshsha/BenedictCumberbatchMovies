@@ -48,12 +48,15 @@ final class APIClient: APIClientProtocol {
         ]
         guard let url = components.url else { return .failure(.invalidURL) }
 
+        let request = URLRequest(url: url)
+
         do {
-            let (data, response) = try await session.data(from: url)
+            let (data, response) = try await session.data(for: request)
             if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
                 return .failure(.serverError(status: http.statusCode))
             }
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             let resp = try decoder.decode(MovieResponse.self, from: data)
             return .success(resp.results)
         } catch let decoding as DecodingError {
@@ -67,15 +70,20 @@ final class APIClient: APIClientProtocol {
         guard var components = URLComponents(string: "\(Constants.baseURL)/movie/\(movieId)/similar") else {
             return .failure(.invalidURL)
         }
-        components.queryItems = [URLQueryItem(name: "api_key", value: Constants.tmdbAPIKey)]
+        components.queryItems = [
+            URLQueryItem(name: "api_key", value: Constants.tmdbAPIKey)
+        ]
         guard let url = components.url else { return .failure(.invalidURL) }
 
+        let request = URLRequest(url: url)
+
         do {
-            let (data, response) = try await session.data(from: url)
+            let (data, response) = try await session.data(for: request)
             if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
                 return .failure(.serverError(status: http.statusCode))
             }
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             let resp = try decoder.decode(MovieResponse.self, from: data)
             return .success(resp.results)
         } catch let decoding as DecodingError {
@@ -85,4 +93,3 @@ final class APIClient: APIClientProtocol {
         }
     }
 }
-

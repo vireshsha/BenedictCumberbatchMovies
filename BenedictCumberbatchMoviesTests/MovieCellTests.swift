@@ -34,7 +34,7 @@ final class MovieCellTests: XCTestCase {
 
     @MainActor func testConfigureSetsTitleAndAccessibilityLabel() {
         // Arrange
-        let movie = Movie(id: 10, title: "Test Title", overview: "O", posterPath: nil, releaseDate: nil)
+        let movie = Movie(id: 10, title: "Test Title", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil)
         let cell = makeCell()
 
         // Act
@@ -52,7 +52,7 @@ final class MovieCellTests: XCTestCase {
 
     @MainActor func testConfigureSetsPlaceholderImmediately() {
         // Arrange
-        let movie = Movie(id: 11, title: "Placeholder", overview: "O", posterPath: nil, releaseDate: nil)
+        let movie = Movie(id: 11, title: "Placeholder", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil)
         let cell = makeCell()
 
         // Act
@@ -72,7 +72,7 @@ final class MovieCellTests: XCTestCase {
 
     func testNoImageLoadWhenPosterURLNil() async {
         // Arrange: movie with nil posterPath
-        let movie = Movie(id: 12, title: "No Poster", overview: "O", posterPath: nil, releaseDate: nil)
+        let movie = Movie(id: 12, title: "No Poster", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil)
         let cell = await makeCell()
 
         // Act
@@ -91,7 +91,7 @@ final class MovieCellTests: XCTestCase {
     func testPrepareForReuseResetsImageAndCancelsTask() async {
         // Arrange: use a very long URL that will never finish quickly, so we can call prepareForReuse
         let slowURL = URL(string: "https://example.com/very/slow/image.png")!
-        let movie = Movie(id: 13, title: "Slow", overview: "O", posterPath: slowURL.path, releaseDate: nil)
+        let movie = Movie(id: 13, title: "Slow", overview: "O", posterPath: slowURL.path, backdropPath: nil, releaseDate: nil)
         // Note: posterURL = Constants.imageBaseURL + posterPath. If Constants.imageBaseURL is not "https://example.com",
         // this URL won’t match our slowURL. We still can exercise cancellation semantics: task will be created if posterURL != nil.
         // For this, we just need posterPath non-nil to trigger Task creation.

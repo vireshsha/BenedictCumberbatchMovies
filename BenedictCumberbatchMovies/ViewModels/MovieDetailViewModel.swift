@@ -38,6 +38,12 @@ final class MovieDetailViewModel: ObservableObject {
                 // filter out same movie if present
                 self.similarMovies = results.filter { $0.id != self.movie.id }
             } catch {
+                // Log detailed error information for diagnostics
+                if let urlError = error as? URLError {
+                    print("Failed to load similar movies for id \(self.movie.id). URLError: \(urlError.code) - \(urlError.localizedDescription)")
+                } else {
+                    print("Failed to load similar movies for id \(self.movie.id):", error.localizedDescription)
+                }
                 // handle gracefully - set to empty
                 self.similarMovies = []
             }

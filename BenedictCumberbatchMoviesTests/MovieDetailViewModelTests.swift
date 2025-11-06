@@ -28,6 +28,7 @@ final class MovieDetailViewModelTests: XCTestCase {
             title: "Unit Test Movie",
             overview: "Overview text",
             posterPath: "/poster.png",
+            backdropPath: "/backdrop.png",
             releaseDate: "2025-01-01"
         )
 
@@ -39,6 +40,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(vm.movie.title, "Unit Test Movie")
         XCTAssertEqual(vm.movie.overview, "Overview text")
         XCTAssertEqual(vm.movie.posterPath, "/poster.png")
+        XCTAssertEqual(vm.movie.backdropPath, "/backdrop.png")
         XCTAssertEqual(vm.movie.releaseDate, "2025-01-01")
     }
 
@@ -46,8 +48,8 @@ final class MovieDetailViewModelTests: XCTestCase {
 
     func testPublishedMovieEmitsWhenReplaced() async {
         // Arrange
-        let initialMovie = Movie(id: 1, title: "A", overview: "O1", posterPath: nil, releaseDate: "2020-01-01")
-        let updatedMovie = Movie(id: 2, title: "B", overview: "O2", posterPath: nil, releaseDate: "2021-02-02")
+        let initialMovie = Movie(id: 1, title: "A", overview: "O1", posterPath: nil, backdropPath: nil, releaseDate: "2020-01-01")
+        let updatedMovie = Movie(id: 2, title: "B", overview: "O2", posterPath: nil, backdropPath: nil, releaseDate: "2021-02-02")
 
         let vm = MovieDetailViewModel(movie: initialMovie)
 
@@ -75,7 +77,7 @@ final class MovieDetailViewModelTests: XCTestCase {
 
     func testPublishedMovieEmitsMultipleUpdates() async {
         // Arrange
-        let vm = MovieDetailViewModel(movie: Movie(id: 1, title: "A", overview: "O1", posterPath: nil, releaseDate: nil))
+        let vm = MovieDetailViewModel(movie: Movie(id: 1, title: "A", overview: "O1", posterPath: nil, backdropPath: nil, releaseDate: nil))
 
         let expectation = XCTestExpectation(description: "Emits multiple updates")
         expectation.expectedFulfillmentCount = 2
@@ -91,8 +93,8 @@ final class MovieDetailViewModelTests: XCTestCase {
             .store(in: &cancellables)
 
         // Act
-        vm.movie = Movie(id: 2, title: "B", overview: "O2", posterPath: nil, releaseDate: nil)
-        vm.movie = Movie(id: 3, title: "C", overview: "O3", posterPath: nil, releaseDate: nil)
+        vm.movie = Movie(id: 2, title: "B", overview: "O2", posterPath: nil, backdropPath: nil, releaseDate: nil)
+        vm.movie = Movie(id: 3, title: "C", overview: "O3", posterPath: nil, backdropPath: nil, releaseDate: nil)
 
         // Assert
         await fulfillment(of: [expectation], timeout: 1)
@@ -103,11 +105,11 @@ final class MovieDetailViewModelTests: XCTestCase {
 
     func testMovieUpdateIsMainActorIsolated() async {
         // Arrange
-        let vm = MovieDetailViewModel(movie: Movie(id: 1, title: "Start", overview: "O", posterPath: nil, releaseDate: nil))
+        let vm = MovieDetailViewModel(movie: Movie(id: 1, title: "Start", overview: "O", posterPath: nil, backdropPath: nil, releaseDate: nil))
 
         // Act
         await MainActor.run {
-            vm.movie = Movie(id: 99, title: "Updated", overview: "O2", posterPath: nil, releaseDate: nil)
+            vm.movie = Movie(id: 99, title: "Updated", overview: "O2", posterPath: nil, backdropPath: nil, releaseDate: nil)
         }
 
         // Assert
@@ -115,3 +117,4 @@ final class MovieDetailViewModelTests: XCTestCase {
         XCTAssertEqual(vm.movie.title, "Updated")
     }
 }
+

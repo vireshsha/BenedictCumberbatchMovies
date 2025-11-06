@@ -112,6 +112,9 @@ This hybrid design models how new SwiftUI modules can integrate into legacy UIKi
 
 4. **Testing Combine Publishers**  
    Used `XCTestExpectation` with Combine to verify emissions from `@Published` properties.
+   
+5. **Poster image issues in Similar Movies** 
+   Fixed by normalizing TMDB image paths and ensuring AsyncImageViewuses the computed posterURL with a reliable placeholder fallback.
 
 ---
 
