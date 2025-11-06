@@ -91,12 +91,9 @@ This hybrid design models how new SwiftUI modules can integrate into legacy UIKi
 
 ## 🚀 Potential Improvements (With More Time)
 
-- Add **search, sorting, and pagination** in the movie list.
-- Implement **error states and placeholders** in AsyncImageView.
-- Introduce **Dependency Injection** for testing MovieService.
-- Add **snapshot/UI tests** for SwiftUI screens.
-- Persist **favorites** using Core Data or SwiftData.
-- Improve accessibility and dynamic type scaling.
+- Add more features like **search, sorting, and pagination** in the movie list.
+- Implement **favorites** persistence using local data storage.
+- Add **localization** support for multiple languages..
 
 ---
 
