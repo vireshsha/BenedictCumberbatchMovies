@@ -13,7 +13,7 @@ This project demonstrates modern app structure, clean navigation management, tes
    cd BenedictCumberbatchMovies
    ```
 
-2. **Open** the project in **Xcode 15 or later**(✅ Project tested and verified on Xcode 26.1)
+2. **Open** the project in **Xcode 15 or later**(✅ Project tested and verified on **Xcode 26.1**)
    
    File: `BenedictCumberbatchMovies.xcodeproj`
 
@@ -43,7 +43,7 @@ This app follows a **Coordinator + MVVM** architecture to separate navigation lo
 ### 🧭 Coordinator Pattern
 The **Coordinator pattern** is responsible for managing screen flow between UIKit and SwiftUI components:
 - The **AppCoordinator** creates and owns the root navigation controller.
-- It handles presenting the **HomeViewController** (UIKit) and pushing the **MovieDetailView** (SwiftUI) wrapped in a `UIHostingController`.
+- It handles presenting the **HomeViewController** (UIKit) and pushing the **MovieDetailView** (SwiftUI) wrapped in a `MovieHostingController`.
 - This ensures navigation logic is **centralized, reusable, and testable**, keeping ViewControllers lightweight.
 
 **Why use a Coordinator?**
