@@ -25,8 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator.start()
         self.coordinator = coordinator
 
-        // UITest hook: if the UI test passes this argument, push a mock detail screen immediately.
+        let window = UIWindow(windowScene: windowScene)
+
         if ProcessInfo.processInfo.arguments.contains("UITest_ShowMockDetail") {
+            // For UI tests, present the mock detail as the initial root
             let mock = Movie(
                 id: 1,
                 title: "Mock Movie",
@@ -37,11 +39,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )
             let detailVM = MovieDetailViewModel(movie: mock)
             let hosting = MovieDetailHostingController(viewModel: detailVM)
-            navigationController.pushViewController(hosting, animated: false)
+
+            let testNav = UINavigationController(rootViewController: hosting)
+            window.rootViewController = testNav
+        } else {
+            // Normal app flow starts at Home
+            window.rootViewController = navigationController
         }
 
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
     }
